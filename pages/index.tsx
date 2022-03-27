@@ -11,17 +11,17 @@ import React, {useState, useEffect} from 'react'
 const Home: NextPage = () => {
 
   interface IUrlTypes {
-  code: string;
-  short_link: string;
-  full_short_link: string;
-  short_link2: string;
-  full_short_link2: string;
-  short_link3: string;
-  full_short_link3: string;
-  share_link: string;
-  full_share_link: string;
-  original_link: string;
-}
+    code: string;
+    short_link: string;
+    full_short_link: string;
+    short_link2: string;
+    full_short_link2: string;
+    short_link3: string;
+    full_short_link3: string;
+    share_link: string;
+    full_share_link: string;
+    original_link: string;
+  }
 
   const [inputUrl, setInputUrl] = useState<string>("");
 
@@ -60,14 +60,17 @@ const Home: NextPage = () => {
     </Head>
 
     <Navbar />
-    <main className={`${styles.main}`}>
+    <main className={`${styles.main} mt-3`}>
     <header className="d-flex mb-3 container">
+    <div className="row">
+    <div className="col-md-6"><Image src={Illustration}/></div>
     <div className="col-md-6 d-flex flex-column justify-content-center">
     <h1>More than just shorter links</h1>
     <p>Build your brand’s recognition and get detailed insights on how your links are performing.</p>
     <button className={styles.cstm_btn_large} style={{fontSize:'100%'}}>Get Started</button>
     </div>
-    <div className="col-md-6"><Image src={Illustration}/></div>
+    </div>
+
     </header>
 
     <div  className="pb-5 position-relative">

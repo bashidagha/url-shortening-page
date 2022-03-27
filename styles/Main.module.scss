@@ -1,6 +1,23 @@
-
+@media (max-width: 600px) {
+  .main {
+    header{
+      text-align: center;
+      h1{
+        font-size: 200% !important;
+      }
+      p{
+        font-size: 80% !important;
+      }
+      button{
+      margin: 0 auto;
+}
+    }
+  }
+}
 
 .main{
+
+
   header{
     h1{
       font-size: 400%;
@@ -101,12 +118,12 @@
     }
 
     .stats_items_2{
-margin-top: 5rem;
-}
+      margin-top: 5rem;
+    }
 
-  .stats_items_3{
-margin-top: 10rem;
-}
+    .stats_items_3{
+      margin-top: 10rem;
+    }
 
   }
 
