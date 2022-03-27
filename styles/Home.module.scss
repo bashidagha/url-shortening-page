@@ -1,5 +1,33 @@
 .myfooter{
-    background-color: #232027;
+  background-color: #232027;
+
+  li{
+    list-style: none;
+  }
+  h5{
+    font-size: 100%;
+    font-weight: bold;
+  }
+  a{
+    font-size: 75%;
+    color: #ABA8AF !important;
+    cursor: pointer;
+  }
+  a:hover{
+    color: #2FCFCF !important;
+  }
+
+  ul{
+    list-style: none;
+    padding-left: 0;
+  }
+
+  svg{
+    fill: white;
+  }
+  svg:hover{
+    fill: #2FCFCF ;
+  }
 }
 
 .myfooter *{
