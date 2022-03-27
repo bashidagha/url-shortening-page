@@ -10,28 +10,42 @@ import React, {useState, useEffect} from 'react'
 
 const Home: NextPage = () => {
 
+  interface IUrlTypes {
+  code: string;
+  short_link: string;
+  full_short_link: string;
+  short_link2: string;
+  full_short_link2: string;
+  short_link3: string;
+  full_short_link3: string;
+  share_link: string;
+  full_share_link: string;
+  original_link: string;
+}
+
   const [inputUrl, setInputUrl] = useState<string>("");
 
-const [urls, setUrls] = useState<Array<string>>(() => {
-  // getting stored value
-  let currentUser =[];
-  if (typeof window !== 'undefined')
-  currentUser = JSON.parse(localStorage.getItem('urls') || '[]');
-  return currentUser;
-});
+  const [urls, setUrls] = useState<Array<IUrlTypes[]>>(() => {
+    // getting stored value
+    let currentUser =[];
+    if (typeof window !== 'undefined')
+    currentUser = JSON.parse(localStorage.getItem('urls') || '[]');
+    return currentUser;
+  });
 
-    useEffect(() => {
-      // storing input name
-      if (typeof window !== 'undefined')
-      localStorage.setItem("urls", JSON.stringify(urls));
-    }, [urls]);
+  useEffect(() => {
+    // storing input name
+    if (typeof window !== 'undefined')
+    localStorage.setItem("urls", JSON.stringify(urls));
+    console.log(urls);
+  }, [urls]);
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     fetch(`https://api.shrtco.de/v2/shorten?url=${inputUrl}`).
     then(response => response.json()).
-    then(data=> data.ok?setUrls(currentArray => [...currentArray, data.result.short_link]):console.log("invalid links")).
+    then(data=> data.ok?setUrls(currentArray => [...currentArray, data.result]):console.log("invalid links")).
     catch(err => console.log(err));
 
   }
@@ -56,7 +70,11 @@ const [urls, setUrls] = useState<Array<string>>(() => {
     <div className="col-md-6"><Image src={Illustration}/></div>
     </header>
 
-    <section className="container p-0 mb-5" style={{backgroundColor:"#3A3053",borderRadius:"10px"}}>
+    <div  className="pb-5 position-relative">
+    <div className="w-100 position-absolute" style={{zIndex:"-1",backgroundColor:"white" , height:"80px",top:"0"}}></div>
+    <div className="w-100 position-absolute" style={{zIndex:"-1",backgroundColor:"#F0F1F6" , height:"120px",bottom:"0"}}></div>
+
+    <section className="container p-0" style={{backgroundColor:"#3A3053",borderRadius:"10px"}}>
     <div className={`${styles.url_input}`}>
     <form className="row m-0 w-100 px-5 text-center" onSubmit={handleSubmit}>
     <div className="col-10 p-0">
@@ -68,14 +86,16 @@ const [urls, setUrls] = useState<Array<string>>(() => {
     </form>
     </div>
     </section>
+    </div>
 
+    <section style={{backgroundColor:"#F0F1F6"}}>
+    {
+      urls.map((url)=><ShortenLinks url={url}/>)
+    }
+    </section>
 
-      {
-        urls.map((url)=><ShortenLinks url={url}/>)
-      }
-
-    <section className={styles.statistics} style={{marginTop:`${(urls.length+1)*(-120)}px`,paddingTop:`${(urls.length+1)*(130)}px`}}>
-    <div className="text-center mx-auto mb-2" style={{maxWidth:"30rem"}} >
+    <section className={styles.statistics}>
+    <div className="text-center mx-auto mb-2 pt-5" style={{maxWidth:"30rem"}} >
     <h1>Advanced Statistics</h1>
     <p>Track how your links are performing across the web with our advanced statistics dashboard.</p>
     </div>
