@@ -22,11 +22,16 @@ button{
   background-color: inherit;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px){
   .nav-link{
       width: 100%;
       text-align: center;
   }
+
+.cstm_btn{
+  width: 100%;
+}
+
 
 }
 

@@ -36,8 +36,10 @@
 
 .url_container{
   background-color: white;
-  height: 80px;
+  min-height: 80px;
+  padding: 20px 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
